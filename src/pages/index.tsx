@@ -14,12 +14,12 @@ export default function Home() {
       <SearchBox />
       <MapDiv>
         {movies.map((movie) => (
-          <Link key={movie.id} href={`/`}>
+          <Link key={movie.id} href={`/${movie.id}`}>
             <a>
               <MovieCard
-                key={movie.id}
-                title={movie.original_title}
-                backdrop_path={movie.backdrop_path}
+                id={movie.id}
+                title={movie.title}
+                poster_path={movie.poster_path}
               />
             </a>
           </Link>

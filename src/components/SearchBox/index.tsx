@@ -9,7 +9,7 @@ export function SearchBox() {
   const [search, setSearch] = useState('')
   const { setMovies } = useContext(MoviesContext);
   const fetchMovies = async () => {
-    const movies = await api.getMovies(search)
+    const movies = await api.searchMovies(search)
     console.log(movies)
     setMovies(movies);
   }

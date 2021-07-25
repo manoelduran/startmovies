@@ -1,9 +1,8 @@
 interface Movie {
   id: number;
-  homepage: string;
+  title: string;
   adult: boolean;
-  original_title: string;
+  popularity: number;
   overview: string;
-  backdrop_path: string;
   poster_path: string;
 }

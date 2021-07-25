@@ -18,6 +18,8 @@ export const MoviesContext = React.createContext<IMoviesContext>({} as IMoviesCo
 export function MoviesProvider({ children }: MoviesProviderProps) {
   const [movies, setMovies] = useState<Movie[]>([]);
 
+ 
+
   return (
     <MoviesContext.Provider value={{ movies, setMovies }}>
       {children}
