@@ -2,7 +2,7 @@ import { Header } from "../components/Header";
 import { SearchBox } from '../components/SearchBox'
 import Link from 'next/link';
 import { MovieCard } from "../components/MovieCard";
-import { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { MoviesContext } from "../context/MoviesContext";
 import { Container, MapDiv } from "../styles/styles";
 
@@ -14,7 +14,7 @@ export default function Home() {
       <SearchBox />
       <MapDiv>
         {movies.map((movie) => (
-          <Link key={movie.id} href={`/${movie.id}`}>
+          <Link key={movie.id} href={`/movie`}>
             <a>
               <MovieCard
                 id={movie.id}
@@ -25,6 +25,7 @@ export default function Home() {
           </Link>
         ))}
       </MapDiv>
+
     </Container>
   )
 }

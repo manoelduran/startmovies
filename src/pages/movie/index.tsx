@@ -1,36 +1,30 @@
 import { GetStaticProps } from "next";
 import { MoviesProvider } from "../../context/MoviesContext";
 import * as api from '../../services/api';
-import { Container } from './styles';
+import { Container, Title, Text } from './styles';
 
-export default function Movie({ currentMovie }) {
+export default function Movie() {
 
   return (
     <Container>
-      <h1>{currentMovie.title}</h1>
-      <p>{currentMovie.overview}</p>
+      <Title>ola</Title>
+      <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem eius sit sequi aut harum voluptatibus praesentium? Ut consequatur, debitis ratione porro rerum fugit sunt fugiat assumenda omnis dolores nulla reprehenderit?</Text>
     </Container>
   );
 }
 
-
-export async function getStaticPaths(search) {
-  const response = await fetch(`/search/movie?api_key=b93819156d04da85373fbb94a6d67acb&query=${search}`)
-  const movies = await response.json()
-
+/*
+export async function getStaticPaths() {
   return {
-    paths: movies.map((movie) => ({
-      params: { id: movie.id }
-    })),
-    fallback: false
+    paths: [],
+    fallback: true
   }
 }
 
-
-
 export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const { id } = params
   const response = await fetch(`https://api.themoviedb.org/3/movie/${params.id}?api_key=b93819156d04da85373fbb94a6d67acb&language=en-US`)
   const currentMovie = await response.json()
 
   return { props: { currentMovie } }
-}
+}*/

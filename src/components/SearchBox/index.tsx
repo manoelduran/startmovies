@@ -1,12 +1,13 @@
-import { FormEvent, useContext, useState } from 'react';
+import React, { FormEvent, useContext, useState } from 'react';
 import { MoviesContext } from '../../context/MoviesContext';
-import { toast } from "react-toastify";
 import * as api from '../../services/api';
-import { Container, Section, Form, Input } from './styles';
+import { Container, Input } from './styles';
+
 
 
 export function SearchBox() {
   const [search, setSearch] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
   const { setMovies } = useContext(MoviesContext);
   const fetchMovies = async () => {
     const movies = await api.searchMovies(search)
@@ -18,22 +19,22 @@ export function SearchBox() {
     try {
       await fetchMovies();
     }
-    catch {
-      toast.error('Filme não encontraddo');
+    catch (err) {
+      console.log(err)
+      alert('Filme não encontrado')
     }
   }
   return (
     <Container>
-      <Section>
-        <Form onSubmit={handleSubmit}>
-          <Input
-            value={search}
-            placeholder="Escolha seu filme"
-            type="text"
-            onChange={(event) => setSearch(event.target.value)}
-          />
-        </Form>
-      </Section>
+      <form onSubmit={handleSubmit}>
+        <Input
+          value={search}
+          placeholder="Escolha seu filme"
+          type="text"
+          onLoad={() => setIsLoading(true)}
+          onChange={(event) => setSearch(event.target.value)}
+        />
+      </form>
     </Container>
   );
 }

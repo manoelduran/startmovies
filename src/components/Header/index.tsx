@@ -1,10 +1,10 @@
 import React from "react";
-import { Container } from './styles';
+import { Container, Text } from './styles';
 
 export function Header() {
   return (
     <Container>
-      <h1>StartMovies</h1>
+      <Text>StartMovies</Text>
     </Container>
   );
 }
