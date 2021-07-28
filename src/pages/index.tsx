@@ -33,6 +33,7 @@ export default function Home() {
         <MapDiv>{
           movies.map((movie) => (
             <MovieCard
+              key={movie.id}
               id={movie.id}
               title={movie.title}
               poster_path={movie.poster_path}
