@@ -32,15 +32,11 @@ export default function Home() {
       {isLoading ? (<Loading />) : (
         <MapDiv>{
           movies.map((movie) => (
-            <Link key={movie.id} href={`/movie`}>
-              <a>
-                <MovieCard
-                  id={movie.id}
-                  title={movie.title}
-                  poster_path={movie.poster_path}
-                />
-              </a>
-            </Link>
+            <MovieCard
+              id={movie.id}
+              title={movie.title}
+              poster_path={movie.poster_path}
+            />
           ))}
         </MapDiv>
       )}
