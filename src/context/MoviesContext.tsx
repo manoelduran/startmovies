@@ -9,6 +9,9 @@ interface MoviesProviderProps {
 interface IMoviesContext {
   movies: Movie[];
   setMovies: (movies: Movie[]) => void;
+  fetchMovies: (search: string) => Promise<void>;
+  search: string;
+  setSearch: (search: string) => void;
 };
 
 export const MoviesContext = React.createContext<IMoviesContext>({} as IMoviesContext);
@@ -17,11 +20,15 @@ export const MoviesContext = React.createContext<IMoviesContext>({} as IMoviesCo
 
 export function MoviesProvider({ children }: MoviesProviderProps) {
   const [movies, setMovies] = useState<Movie[]>([]);
+  const [search, setSearch] = useState('');
 
- 
 
+  const fetchMovies = async () => {
+    const movies = await api.searchMovies(search)
+    setMovies(movies);
+  }
   return (
-    <MoviesContext.Provider value={{ movies, setMovies }}>
+    <MoviesContext.Provider value={{ movies, setMovies, search, setSearch, fetchMovies }}>
       {children}
     </MoviesContext.Provider>
   );

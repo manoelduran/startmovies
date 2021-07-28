@@ -1,13 +1,15 @@
 import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
+ 
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
-  body, html {
+  #root, body, html {
     height: 100%;
+    width: 100%;
   }
 
   html {
@@ -17,6 +19,9 @@ export default createGlobalStyle`
 
     @media (max-width: 720px){
       font-size: 87.5%; // 14px
+    }
+    @media (max-width: 300px){
+      font-size: 81.25%; // 13px
     }
   }
 

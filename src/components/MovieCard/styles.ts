@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
 width:100%;
-padding: 2rem;
 margin-top: 1.5rem;
 display: flex;
 flex-direction: column;
@@ -16,6 +15,8 @@ font-size: 1rem;
 
 export const Poster = styled.img`
 margin-top: 1rem;
+border-radius: 2rem;
+
 `;
 
 

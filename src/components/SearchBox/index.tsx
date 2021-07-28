@@ -1,40 +1,32 @@
-import React, { FormEvent, useContext, useState } from 'react';
-import { MoviesContext } from '../../context/MoviesContext';
-import * as api from '../../services/api';
+import React, { useEffect, useState } from 'react';
 import { Container, Input } from './styles';
+import useDebounce from '../../hooks/useDebounce';
 
 
+interface SearchBoxProps {
+  value: string;
+  onChange: (event: string) => void;
+}
 
-export function SearchBox() {
-  const [search, setSearch] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
-  const { setMovies } = useContext(MoviesContext);
-  const fetchMovies = async () => {
-    const movies = await api.searchMovies(search)
-    console.log(movies)
-    setMovies(movies);
-  }
-  async function handleSubmit(event: FormEvent) {
-    event.preventDefault();
-    try {
-      await fetchMovies();
+export function SearchBox({ value, onChange }: SearchBoxProps) {
+  const [displayValue, setDisplayValue] = useState(value);
+
+  const debounceChange = useDebounce(onChange, 2000);
+
+
+    function handleSearch(event) {
+      setDisplayValue(event.target.value);
+      debounceChange(event.target.value);
+
     }
-    catch (err) {
-      console.log(err)
-      alert('Filme não encontrado')
-    }
-  }
-  return (
-    <Container>
-      <form onSubmit={handleSubmit}>
+    return (
+      <Container>
         <Input
-          value={search}
+          value={displayValue}
           placeholder="Escolha seu filme"
           type="text"
-          onLoad={() => setIsLoading(true)}
-          onChange={(event) => setSearch(event.target.value)}
+          onChange={handleSearch}
         />
-      </form>
-    </Container>
-  );
-}
+      </Container>
+    );
+  };

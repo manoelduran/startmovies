@@ -2,16 +2,17 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
 width: 100%;
-top: 0;
-position: relative;
-height: 5rem;
+height: 100%;
 display: flex;
+flex-direction: column;
 align-items: center;
 justify-content: center;
-background: #667580;
+margin-top: 1.5rem;
 `;
 
 export const Text = styled.h1`
-font-weight: 600;
-color: #fff;
+font-size: 2rem;
+display: flex;
+align-items: center;
+justify-content: center;
 `;
